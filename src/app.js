@@ -49,6 +49,12 @@ app.get("/Avalibility", (req,res)=>{
 	res.render("Avalibility.ejs")
 })
 
+// Render seemore
+
+app.get("/seemore", (req,res)=>{
+	res.render("seemore.ejs")
+})
+
 // Showing register form
 app.get("/register", function (req, res) {
 	res.render("register");

@@ -391,3 +391,11 @@ form button:hover {
         padding: 30px 20px;
     }
 }
+
+/* Logout Button */
+.logout {
+    text-decoration: none;
+    color: black;
+}
+
+
