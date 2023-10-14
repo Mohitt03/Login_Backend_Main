@@ -43,6 +43,12 @@ app.get("/secret", isLoggedIn, async function (req, res) {
 
 });
 
+// Render Avalibility
+
+app.get("/Avalibility", (req,res)=>{
+	res.render("Avalibility.ejs")
+})
+
 // Showing register form
 app.get("/register", function (req, res) {
 	res.render("register");
@@ -99,6 +105,8 @@ function isLoggedIn(req, res, next) {
 	if (req.isAuthenticated()) return next();
 	res.redirect("/login");
 }
+
+
 
 var port = process.env.PORT || 3000;
 app.listen(port, function () {

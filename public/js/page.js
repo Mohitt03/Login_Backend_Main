@@ -1,4 +1,3 @@
-
 const navbarMenu = document.querySelector(".navbar .links");
 const hamburgerBtn = document.querySelector(".hamburger-btn");
 const hideMenuBtn = navbarMenu.querySelector(".close-btn");
@@ -31,3 +30,9 @@ signupLoginLink.forEach(link => {
     });
 });
 console.log("hello");
+
+
+
+// Map
+
+var map = L.map('map').setView([51.505, -0.09], 13);
