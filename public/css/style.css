@@ -59,6 +59,7 @@ body {
     height: 100vh;
     width: 100%;
     background: url("pxfuel.jpg") center/cover no-repeat;
+    background-color: aliceblue
 }
 
 header {

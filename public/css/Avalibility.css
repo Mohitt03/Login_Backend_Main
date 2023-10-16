@@ -1,6 +1,10 @@
 /* Importing Google font - Open Sans */
 @import url("https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;500;600;700&display=swap");
 
+body {
+    background-color: aliceblue;
+    font-family: sans-serif;
+}
 /* Section 1 */
 
 
@@ -16,6 +20,9 @@
     /* align-items: center; */
     padding: 0px 0px 0px 100px;
     justify-content: center;
+    background-color: aliceblue;
+    border: 2px solid deepskyblue;
+    border-right: none;
 }
 .sec1-div1-h1{
     font-size: 41px;
@@ -49,6 +56,8 @@
 .sec1-div3{
     display: flex;
     align-items: center;
+    border: 2px solid deepskyblue;
+    border-left: none;
 }
 .map{
     width: 387px;
@@ -79,8 +88,8 @@ Enrty ====> screen
         justify-content: center;
         margin-top: 0px;
         flex-direction: column;
-        padding: 0px 0px 0px 119px;
-    }
+        padding: 24px 119px;
+        }
     .sec1-div1-h1 {
         top: 92px;
         font-size: 37px;
@@ -99,9 +108,19 @@ Enrty ====> screen
     }
     
     .sec1-div2 {
-
+        align-items: center;
         padding: 0px 0px 0px 0px;
-    }
+        border: 2px solid deepskyblue;
+        border-bottom: none;
+        }
+    .sec1-div3 {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        border: 2px solid deepskyblue;
+        border-top: none;
+        padding: 33px 0px;
+    }   
     .map{
         width: 276px;
         height: 250px;
@@ -112,7 +131,6 @@ Enrty ====> screen
 @media (max-width:767px) {
     .sec1-div1 {
         align-items: center;
-        padding: 0px;
     }
     .sec1-div2 {
         display: flex;
@@ -122,8 +140,22 @@ Enrty ====> screen
         /* justify-content: center; */
         width: 300px;
     }
+    .sec1-div3 {
+        width: 334px;
+    }
 
 
 }
 
-@media (max-width:565px) {}
+@media (max-width:375px) {
+    .sec1-div2{
+        border: none;
+        padding: 0px;
+        /* width: 0px; */
+
+    }
+    .sec1-div3{
+        border: none;
+        width: 0px;
+    }
+}

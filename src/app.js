@@ -60,7 +60,7 @@ app.get("/register", function (req, res) {
 	res.render("register");
 });
 
-// Handling user signup
+// Handling user registration
 app.post("/register", async (req, res) => {
 	const user = await User.create({
 		username: req.body.username,

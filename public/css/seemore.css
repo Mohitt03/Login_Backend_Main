@@ -1,5 +1,8 @@
 /* See More */
-
+body{
+    font-family: sans-serif;
+    background-color: aliceblue
+}
 .sec1{
     height: 100%;
     display: flex;
