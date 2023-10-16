@@ -64,6 +64,7 @@ app.get("/register", function (req, res) {
 app.post("/register", async (req, res) => {
 	const user = await User.create({
 		username: req.body.username,
+		email: req.body.email,
 		password: req.body.password
 	});
 
@@ -101,7 +102,7 @@ app.post("/login", async function (req, res) {
 app.get("/logout", function (req, res) {
 	req.logout(function (err) {
 		if (err) { return next(err); }
-		res.redirect('/');
+		res.render('home.ejs');
 	});
 });
 
