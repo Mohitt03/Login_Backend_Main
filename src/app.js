@@ -3,17 +3,22 @@ express = require("express"),
 	passport = require("passport"),
 	bodyParser = require("body-parser"),
 	LocalStrategy = require("passport-local"),
-	passportLocalMongoose = require("passport-local-mongoose")
+	axios = require("axios")
+passportLocalMongoose = require("passport-local-mongoose")
+
 
 
 const User = require("../model/User");
+
 var app = express();
 app.use(express.static("public"))
+
 
 mongoose.connect("mongodb://localhost/27017");
 
 app.set("view engine", "ejs");
 app.use(bodyParser.urlencoded({ extended: true }));
+app.use(bodyParser.json());
 app.use(require("express-session")({
 	secret: "Rusty is a dog",
 	resave: false,
@@ -26,7 +31,7 @@ app.use(passport.session());
 passport.use(new LocalStrategy(User.authenticate()));
 passport.serializeUser(User.serializeUser());
 passport.deserializeUser(User.deserializeUser());
-
+const API_URL = "http://localhost:4000"
 
 // Showing home page
 app.get("/", function (req, res) {
@@ -45,14 +50,27 @@ app.get("/secret", isLoggedIn, async function (req, res) {
 
 // Render Avalibility
 
-app.get("/Avalibility", (req,res)=>{
-	res.render("Avalibility.ejs")
-})
+// app.get("/Avalibility", (req,res)=>{
+// 	res.render("Avalibility.ejs")
+// })
+app.get("/Avalibility", async (req, res) => {
+	try {
+		const response = await axios.get(`${API_URL}/parking`);
+		res.render("Avalibility.ejs", { parking: response.data });
+	} catch (error) {
+		res.status(500).json({ message: "Error fetching posts" });
+	}
+});
 
 // Render seemore
 
-app.get("/seemore", (req,res)=>{
-	res.render("seemore.ejs")
+app.get("/seemore", async (req, res) => {
+	try {
+		const response = await axios.get(`${API_URL}/parking`);
+		res.render("seemore.ejs", { parking: response.data });
+	} catch (error) {
+		res.status(500).json({ message: "Error fetching posts" });
+	}
 })
 
 // Showing register form

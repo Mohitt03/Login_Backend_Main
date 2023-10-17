@@ -10,26 +10,33 @@
 
 <body>
     <section class="sec1">
-        <div class="sec1-div1">
-            <div class="sec1-div2">
-                <h1 class="sec1-div1-h1">Parking 1</h1>
-                <h2 class="sec1-div1-h2">Address</h2>
-                <p class="sec1-div1-p">Railway Station Area, Varachha, Surat, Gujarat 395008</p>
-                <h3 class="sec1-div1-h3"><a class="sec1-div1-h3-a"
-                        href="https://www.google.com/maps/place/Surat+Railway+Pay+And+Park/@21.206114,72.840136,17z/data=!4m6!3m5!1s0x3be04f3906ad8a0b:0x411a84a017a6c633!8m2!3d21.2061144!4d72.8401357!16s%2Fg%2F11ghpmwf1y?hl=en&entry=ttu">View map here </a>
-                    <p>➡️</p>
-                </h3>
-                <h3 class="sec1-div1-h3 link2"><a href="/seemore" class="sec1-div1-h3-a">See More </a></h3>
-            </div>
-            <div class="sec1-div3">
-                <iframe class="map"
-                    src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2211.7215312245835!2d72.83796322917658!3d21.205764040509283!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3be04f3906ad8a0b%3A0x411a84a017a6c633!2sSurat%20Railway%20Pay%20And%20Park!5e0!3m2!1sen!2sin!4v1697250511342!5m2!1sen!2sin"
-                    style="border:0;" allowfullscreen="" loading="lazy"
-                    referrerpolicy="no-referrer-when-downgrade"></iframe>
+        <% parking.forEach(parking=> { %>
+            <div class="sec1-div1">
+
+                <div class="sec1-div2">
+                    <h1 class="sec1-div1-h1">
+                        Parking <%=parking.id%>
+                    </h1>
+                    <h2 class="sec1-div1-h2">Address</h2>
+                    <p class="sec1-div1-p">
+                        <%=parking.address%>
+                    </p>
+                    <h3 class="sec1-div1-h3"><a class="sec1-div1-h3-a" href=<%=parking.link %>>View
+                            map here </a>
+                        <p>➡️</p>
+                    </h3>
+                    <h3 class="sec1-div1-h3 link2"><a href="/seemore" class="sec1-div1-h3-a">See More </a></h3>
+                </div>
+                <div class="sec1-div3">
+                    <iframe class="map" src=<%=parking.src %>
+                        style="border:0;" allowfullscreen="" loading="lazy"
+                        referrerpolicy="no-referrer-when-downgrade"></iframe>
+
+
+                </div>
 
             </div>
-        </div>
-
+            <% }); %>
     </section>
 </body>
 
