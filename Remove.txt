@@ -1,0 +1,22 @@
+    <header>
+        <nav class="navbar">
+            <span class="hamburger-btn material-symbols-rounded show-menu">menu</span>
+            <a href="#" class="logo">
+                <img src="../images/download (1).png" alt="logo">
+                <h2>Parking</h2>
+            </a>
+            <ul class="links">
+                <span class="close-btn material-symbols-rounded ">close</span>
+                <li><a href="#">Home</a></li>
+                <li><a href="/Avalibility">Avalibility</a></li>
+                <li><a href="#">About us</a></li>
+                <li><a href="#">Contact us</a></li>
+            </ul>
+            <div class="home-link">
+                <!-- <a class="home-link1"  href="/register" >Sign up</a>
+                <a class="home-link2" href="/login">Login</a> -->
+                <!-- <a class="home-link" href="/logout">Logout</a> -->
+            </div>
+            <button class="login-btn"><a href="/" class="logout">LOG OUT</a></button>
+        </nav>
+    </header>
