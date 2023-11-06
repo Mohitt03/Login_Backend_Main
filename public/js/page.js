@@ -12,7 +12,7 @@ hamburgerBtn.addEventListener("click", () => {
 });
 
 // Hide mobile menu
-hideMenuBtn.addEventListener("click", () =>  hamburgerBtn.click());
+hideMenuBtn.addEventListener("click", () => hamburgerBtn.click());
 
 // Show login popup
 showPopupBtn.addEventListener("click", () => {

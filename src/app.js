@@ -106,12 +106,7 @@ app.post("/login", async function (req, res) {
 			if (result) {
 				// console.log(user.username);
 				// res.render("secret");
-				try {
-					const response = await axios.get(`${API_URL_USER}/User?key=123456789`);
-					res.render("secret.ejs", { User: response.data });
-				} catch (error) {
-					res.status(500).json({ message: "Error fetching posts" });
-				}
+					res.render("secret.ejs", { name: req.body.username });
 			} else {
 				res.status(400).json({ error: "password doesn't match" });
 			}
