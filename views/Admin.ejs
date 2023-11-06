@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ADMIN</title>
+    <link rel="stylesheet" href="..\styles\Admin.css">
+</head>
+
+<body>
+
+    <head>
+        <h1 class="head">Admin Side</h1>
+    </head>
+
+
+    <section class="sec1">
+        <div class="sec1-div1">
+            <% parking.forEach(parking=> { %>
+                <table>
+                    <tr>
+                        <th>Parking ID</th>
+                        <td>
+                            <%=parking._id%>
+                        </td>
+                    </tr>
+                    <tr>
+                        <th>Parking NO</th>
+                        <td>
+                            <%=parking.parking_number%>
+                        </td>
+                    </tr>
+                </table>
+                <% }); %>
+
+        </div>
+
+    </section>
+</body>
+
+</html>

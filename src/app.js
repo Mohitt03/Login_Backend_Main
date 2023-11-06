@@ -33,7 +33,8 @@ passport.serializeUser(User.serializeUser());
 passport.deserializeUser(User.deserializeUser());
 const API_URL = "http://localhost:4000"
 const API_URL_USER = "http://localhost:2000"
-
+const ADMIN = "MOHIT0000";
+const ADMIN_KEY = "1511";
 // Showing home page
 app.get("/", function (req, res) {
 	res.render("home");
@@ -74,6 +75,22 @@ app.get("/seemore", async (req, res) => {
 	}
 })
 
+// Admin
+
+app.get('/Admin', async (req, res) => {
+	const userKey = (req.query.key)
+	if (ADMIN_KEY === userKey) {
+		const response = await axios.get(`${API_URL}/parking?key=123456789`);
+		res.render("Admin.ejs", { parking: response.data })
+	}
+	else {
+		res
+			.status(404)
+			.json({ error: "You are not authorized" })
+	}
+
+})
+
 // Showing register form
 app.get("/register", function (req, res) {
 	res.render("register");
@@ -106,7 +123,7 @@ app.post("/login", async function (req, res) {
 			if (result) {
 				// console.log(user.username);
 				// res.render("secret");
-					res.render("secret.ejs", { name: req.body.username });
+				res.render("secret.ejs", { name: req.body.username });
 			} else {
 				res.status(400).json({ error: "password doesn't match" });
 			}
@@ -117,6 +134,8 @@ app.post("/login", async function (req, res) {
 		res.status(400).json({ error });
 	}
 });
+
+
 
 //Handling user logout
 app.get("/logout", function (req, res) {
