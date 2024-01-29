@@ -14,34 +14,11 @@ var User = new Schema({
         type: String,
         required: true
     }
-    // ,
-    // total_spot: {
-    //     type: Number,
-    //     required: true
-    // },
-    // available: {
-    //     type: Number,
-    //     required: true
-    // },
 
-    // occupied: {
-    //     type: Number,
-    //     required: true
-    // },
-
-    // type: {
-    //     type: String,
-    //     required: true
-    // },
-    // link: {
-    //     type: String,
-    //     required: true
-    // },
-    // src: {
-    //     type: String,
-    //     required: true
-    // }
-}
+},
+    {
+        timestamps: true
+    }
 )
 
 User.plugin(passportLocalMongoose);

@@ -18,11 +18,10 @@ body {
     display: flex;
     flex-direction: column;
     /* align-items: center; */
-    padding: 0px 0px 0px 100px;
+    padding: 0px 100px 0px 100px;
     justify-content: center;
     background-color: aliceblue;
     border: 2px solid deepskyblue;
-    border-right: none;
 }
 .sec1-div1-h1{
     font-size: 41px;

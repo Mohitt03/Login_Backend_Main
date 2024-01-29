@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale  =1.0">
+  <title>Document</title>
+  <link rel="stylesheet" href="/css/createparking.css">
+</head>
+
+<body>
+  <div class="container">
+    <h1>
+      <%= heading %>
+    </h1>
+
+    <% if (locals.post) { %>
+      <form id="newPostForm" action="/api/Pdata/<%= post._id %>" method="post">
+
+        <input type="text" name="name" placeholder="Product Name" value="<%= post.name %>">
+        <select name="type">
+          <option value="<%= post.type %>">
+            <%= post.type %>
+          </option>
+        </select><br>
+        <input type="text" name="price" placeholder="Product Price" value="<%= post.price %>">
+        <textarea name="brief" placeholder="Product Brief" rows="10"><%= post.brief %></textarea>
+        <input type="text" name="img" placeholder="Image Link" value="<%= post.img %>">
+        <input type="text" name="img2" placeholder="Image Link" value="<%= post.img2 %>">
+        <button class="full-width" type="submit">
+          <%= submit %>
+        </button>
+      </form>
+      <% } else{%>
+        <form id="newPostForm" action="/Pdata" method="post">
+
+          <input type="text" name="name" placeholder="Product Name">
+          <select name="type">
+            <option value="Small Plates">Small Plates</option>
+            <option value="Soups and Salads">Soups and Salads</option>
+            <option value="Essentials">Essentials</option>
+            <option value="Meat and Fish">Meat and Fish</option>
+            <option value="Soft Drinks">Soft Drinks</option>
+            <option value="Desserts">Desserts</option>
+            <option value="Wine">Wine</option>
+          </select><br>
+          <input type="text" name="price" placeholder="Product Price">
+          <textarea name="brief" placeholder="Product Brief" rows="10"></textarea>
+          <input type="text" name="img" placeholder="Image Link">
+          <input type="text" name="img2" placeholder="Image Link">
+          <button class="full-width" type="submit">
+            <%= submit %>
+          </button>
+        </form>
+        <% } %>
+  </div>
+
+</body>
+
+</html>

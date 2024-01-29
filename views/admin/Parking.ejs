@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="/css/Admin.css">
+</head>
+
+<body>
+    <table>
+        <tr>
+            <th>Parking Number</th>
+            <th>ID</th>
+            <th>Address</th>
+            <th>Map Link</th>
+            <th>Map Src</th>
+            <th>Total Spot</th>
+            <th>CreatedAt</th>
+            <th>UpdatedAt</th>
+            <th><a href="/createparking">Create Parking</a></th>
+        </tr>
+        <% datas.forEach(data=> { %>
+            <tr>
+                <td>
+                    <%= data.parking_number %>
+                </td>
+                <td>
+                    <%= data._id %>
+                </td>
+                <td>
+                    <%= data.address %>
+                </td>
+                <td>
+                    <%= data.link %>
+                </td>
+
+                <td>
+                    <%= data.src %>
+                </td>
+                <td>
+                    <%= data.total_spot %>
+                </td>
+
+
+
+                <td>
+                    <%= data.createdAt %>
+                </td>
+                <td>
+                    <%= data.updatedAt %>
+                </td>
+                <td>
+                    <a class="delete" href="/api/Udata/delete/<%= data._id %>/?key=123456789">Delete</a>
+                    <br>
+                    <a class="delete" href="/edit/<%= data._id %>">Edit</a>
+                </td>
+            </tr>
+
+            <% }); %>
+
+    </table>
+</body>
+
+</html>

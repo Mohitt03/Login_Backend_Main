@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Parking Avalibility</title>
+    <!-- Google Icons Link -->
+    <link rel="stylesheet"
+        href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@48,400,0,0">
+    <!-- Google Fonts Link For Icons -->
+    <link rel="stylesheet"
+        href="https://fonts.googleapis.com/css2?family=Material+Symbols+Rounded:opsz,wght,FILL,GRAD@48,400,0,0">
+    <link rel="stylesheet" href="..\css\style.css" type="text/css">
+    <link href="..\css\style2.css" rel="stylesheet">
+
+
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"
+        integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY=" crossorigin="" />
+
+    <!-- Make sure you put this AFTER Leaflet's CSS -->
+    <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"
+        integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo=" crossorigin=""></script>
+
+</head>
+
+<body>
+
+    <!-- Navbar  Section -->
+
+
+    <section>
+        <nav class="navbar">
+            <div class="div-img ">
+                <img src="../images/download (1).png" class="head-img">
+                <h3>Park My Spot</h3>
+            </div>
+            <div class="navbar-div1">
+                <ul class="menu-links">
+                    <li><a href="#">Home</a></li>
+                    <li><a href="/Avalibility">Avalibility</a></li>
+                    <li><a href="/about">About us</a></li>
+                    <li><a href="/contact">Contact us</a></li>
+                    <span id="close-menu-btn" class="material-symbols-outlined">close</span>
+                </ul>
+                <!-- <video autoplay muted loop id="myVideo">
+                    <source src="\images\car.mp4" type="video/mp4">
+                </video> -->
+
+            </div>
+            <div class="navbar-div2">
+                <div class="div-btn">
+                    <button class="book nav-btn1 b "><a class="logout login-btn" href="/register">Register</a></button>
+                    <button class="book nav-btn1 b "><a class="logout login-btn" href="/login">Login</a></button>
+                    <span id="hamburger-btn" class="material-symbols-outlined">menu</span>
+                </div>
+
+        </nav>
+    </section>
+
+    <!-- Section 1 -->
+
+    <section>
+        <div class="sec1-div1">
+            <div class="sec1-div2">
+                <h1 class="sec1-h1">Where You Want To Go ?</h1>
+                <input class="sec1-inp1" id="searchBar" type="text" placeholder="Search...">
+                <br><br>
+                <button onclick="findParking()">Find Parking</button>
+            </div>
+            <div>
+                <iframe
+                    src="https://www.google.com/maps/embed?pb=!1m16!1m12!1m3!1d55077.69763873482!2d72.8070820610023!3d21.19078653906909!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!2m1!1sParking%20in%20surat!5e0!3m2!1sen!2sin!4v1703056664364!5m2!1sen!2sin"
+                    width="500" height="490" style="border:0;" allowfullscreen="" loading="lazy"
+                    referrerpolicy="no-referrer-when-downgrade"></iframe>
+            </div>
+        </div>
+    </section>
+
+
+    <script src="..\js\script.js"></script>
+    <script src="..\js\page.js" defer></script>
+    <script>
+        const header = document.querySelector("header");
+        const hamburgerBtn = document.querySelector("#hamburger-btn");
+        const closeMenuBtn = document.querySelector("#close-menu-btn");
+
+        // Toggle mobile menu on hamburger button click
+        hamburgerBtn.addEventListener("click", () => header.classList.toggle("show-mobile-menu"));
+
+        // Close mobile menu on close button click
+        closeMenuBtn.addEventListener("click", () => hamburgerBtn.click());
+    </script>
+</body>
+
+</html>

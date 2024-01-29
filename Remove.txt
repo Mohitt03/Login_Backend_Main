@@ -20,3 +20,12 @@
             <button class="login-btn"><a href="/" class="logout">LOG OUT</a></button>
         </nav>
     </header>
+
+
+
+
+    ////  Availibility map   
+                    <div class="sec1-div3">
+                    <iframe class="map" src=<%=parking.src%> style="border:0;" allowfullscreen="" loading="lazy"
+                        referrerpolicy="no-referrer-when-downgrade"></iframe>
+                </div>
