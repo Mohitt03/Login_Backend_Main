@@ -39,7 +39,6 @@
             <div class="navbar-div1">
                 <ul class="menu-links">
                     <li><a href="#">Home</a></li>
-                    <li><a href="/Avalibility">Avalibility</a></li>
                     <li><a href="/about">About us</a></li>
                     <li><a href="/contact">Contact us</a></li>
                     <span id="close-menu-btn" class="material-symbols-outlined">close</span>
@@ -64,10 +63,14 @@
     <section>
         <div class="sec1-div1">
             <div class="sec1-div2">
-                <h1 class="sec1-h1">Where You Want To Go ?</h1>
-                <input class="sec1-inp1" id="searchBar" type="text" placeholder="Search...">
-                <br><br>
-                <button onclick="findParking()">Find Parking</button>
+                <form action="/Availibility">
+                    <h1 class="sec1-h1">Where You Want To Go ?</h1>
+                    <input class="sec1-inp1" id="searchBar" name="search" type="text" placeholder="Search...">
+                    <br>
+                    <div class="inp-class">
+                        <input class="home-inp" type="submit" value="Search">
+                    </div>
+                </form>
             </div>
             <div>
                 <iframe

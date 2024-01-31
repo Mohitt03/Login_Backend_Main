@@ -207,7 +207,7 @@ app.get("/contact", (req, res) => {
 
 app.get("/Reservation", async (req, res) => {
 	try {
-		const response = await axios.get(`${API_URL}/Data/?key=123456789`);
+		const response = await axios.get(`${API_URL}/ParkingReservation/?key=123456789`);
 		console.log(response);
 		res.render("C:/Users/MOHIT/Desktop/Parking reservation system/views/admin/Reservation.ejs", { datas: response.data });
 	} catch (error) {
@@ -356,7 +356,7 @@ app.post("/Reservation", async (req, res) => {
 			spot: req.body.spot,
 			address: req.body.address
 		});
-		res.render("TableBookingComplete.ejs")
+		res.render("C:/Users/MOHIT/Desktop/Parking reservation system/views/user/ReservationComplete.ejs")
 
 
 	} catch (error) {
