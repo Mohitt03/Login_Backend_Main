@@ -1,6 +1,15 @@
 body {
     font-family: sans-serif;
 }
+.a{
+    padding: 5px 5px;
+    background-color: aquamarine;
+    text-decoration: none;
+    color: black;
+}
+.a:hover{
+    background-color: aqua;
+}
 
 table,
 th,

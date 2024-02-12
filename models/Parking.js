@@ -17,6 +17,10 @@ var Parking = new Schema({
     iframe_link: {
         type: String,
         required: true
+    },
+    total_spot: {
+        type: Number,
+        required: true
     }
 },
     {

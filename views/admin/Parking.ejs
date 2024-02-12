@@ -9,13 +9,26 @@
 </head>
 
 <body>
+
+    <!-- Navbar  Section -->
+
+
+
+
+    <a class="a" href="/Reservation">Reservation</a>
+    <br><a class="a" href="/users">Users</a>npm r
+
+
+
+
+
     <table>
         <tr>
             <th>Parking Number</th>
             <th>ID</th>
             <th>Address</th>
             <th>Map Link</th>
-            <th>Map Src</th>
+            <th>Iframe link</th>
             <th>Total Spot</th>
             <th>CreatedAt</th>
             <th>UpdatedAt</th>
@@ -37,10 +50,10 @@
                 </td>
 
                 <td>
-                    <%= data.src %>
+                    <%= data.iframe_link %>
                 </td>
                 <td>
-                    <%= data.total_spot %>
+                    <%= data.w %>
                 </td>
 
 
@@ -52,7 +65,7 @@
                     <%= data.updatedAt %>
                 </td>
                 <td>
-                    <a class="delete" href="/api/Udata/delete/<%= data._id %>/?key=123456789">Delete</a>
+                    <a class="delete" href="/api/parking/delete/<%= data._id %>/?key=123456789">Delete</a>
                     <br>
                     <a class="delete" href="/edit/<%= data._id %>">Edit</a>
                 </td>

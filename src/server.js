@@ -45,88 +45,40 @@ let day = date.getDate();
 let month = date.getMonth() + 1;
 let year = date.getFullYear();
 
-// Showing home page
+//  Home page
 app.get("/", function (req, res) {
 	res.render("C:/Users/MOHIT/Desktop/Parking reservation system/views/user/home");
 });
 
-// Showing secret page
+
+//  Secret page
 app.get("/secret", isLoggedIn, async function (req, res) {
-
-	// var user = await User.findOne({ username: req.body.username });
-	// console.log(user.username);
-	// const c =  '2';
 	res.render("C:/Users/MOHIT/Desktop/Parking reservation system/views/user/secret.ejs");
-
 });
 
-// Render Avalibility
 
-// app.get("/Avalibility", (req,res)=>{
-// 	res.render("Avalibility.ejs")
-// })
-
-
-app.get('/Availibility', async (req, res) => {
-	try {
-		var search = req.query.search
-		const parking = await Parking.find(
-			{
-				"$or": [
-					{ address: { $regex: '.*' + search + '.*', $options: 'i' } }
-				]
-			}
-		);
-		console.log(parking);
-		// res.status(200).json(parking);
-		res.render("C:/Users/MOHIT/Desktop/Parking reservation system/views/user/Avalibility.ejs", { parking });
-	} catch (error) {
-		res.status(500).json({ message: error.message })
-	}
+// About page
+app.get("/about", (req, res) => {
+	res.render("C:/Users/MOHIT/Desktop/Parking reservation system/views/user/About.ejs")
 })
 
 
-// app.get("/Avalibility", async (req, res) => {
-// 	try {
-// 		const response = await axios.get(`${API_URL}/parking?key=123456789`);
-// 		res.render("Avalibility.ejs", { parking: response.data });
-// 	} catch (error) {
-// 		res.status(500).json({ message: "Error fetching posts" });
-// 	}
-// });
+// Contact page
 
-// Render seemore
-
-app.get("/seemore", async (req, res) => {
-	try {
-		const response = await axios.get(`${API_URL}/parking?key=123456789`);
-		res.render("C:/Users/MOHIT/Desktop/Parking reservation system/views/user/seemore.ejs", { parking: response.data });
-	} catch (error) {
-		res.status(500).json({ message: "Error fetching posts" });
-	}
+app.get("/contact", (req, res) => {
+	res.render("C:/Users/MOHIT/Desktop/Parking reservation system/views/user/Contact.ejs")
 })
 
-// Admin
 
-app.get('/Admin', async (req, res) => {
-	const userKey = (req.query.key)
-	if (ADMIN_KEY === userKey) {
-		res.render("C:/Users/MOHIT/Desktop/Parking reservation system/views/admin/Admin.ejs")
-	}
-	else {
-		res
-			.status(404)
-			.json({ error: "You are not authorized" })
-	}
-
-})
 
 // Showing register form
+
 app.get("/register", function (req, res) {
 	res.render("C:/Users/MOHIT/Desktop/Parking reservation system/views/user/register");
 });
 
 // Handling user registration
+
 app.post("/register", async (req, res) => {
 	const user = await User.create({
 		username: req.body.username,
@@ -138,11 +90,13 @@ app.post("/register", async (req, res) => {
 });
 
 //Showing login form
+
 app.get("/login", function (req, res) {
 	res.render("C:/Users/MOHIT/Desktop/Parking reservation system/views/user/login");
 });
 
 //Handling user login
+
 app.post("/login", async function (req, res) {
 	try {
 		// check if the user exists
@@ -150,11 +104,8 @@ app.post("/login", async function (req, res) {
 		const username = req.body.username; // Assuming you retrieve the username from the login form
 		req.session.username = username;
 		if (user) {
-			//check if password matches
 			const result = req.body.password === user.password;
 			if (result) {
-				// console.log(user.username);
-				// res.render("secret");
 				res.render("C:/Users/MOHIT/Desktop/Parking reservation system/views/user/secret.ejs", { name: req.session.username });
 			} else {
 				res.status(400).json({ error: "password doesn't match" });
@@ -186,20 +137,114 @@ function isLoggedIn(req, res, next) {
 
 
 
-// About
-app.get("/about", (req, res) => {
-	res.render("C:/Users/MOHIT/Desktop/Parking reservation system/views/user/About.ejs")
+// Availibility page
+
+
+app.get('/Availibility', async (req, res) => {
+	try {
+		var search = req.query.search
+		const parking = await Parking.find(
+			{
+				"$or": [
+					{ address: { $regex: '.*' + search + '.*', $options: 'i' } }
+				]
+			}
+		);
+		res.render("C:/Users/MOHIT/Desktop/Parking reservation system/views/user/Avalibility.ejs", { parking });
+	} catch (error) {
+		res.status(500).json({ message: error.message })
+	}
 })
 
-app.get("/contact", (req, res) => {
-	res.render("C:/Users/MOHIT/Desktop/Parking reservation system/views/user/Contact.ejs")
+
+
+// Seemore
+
+app.get("/seemore/:id", async (req, res) => {
+	try {
+		const parkingMain = await axios.get(`${API_URL}/parking/${req.params.id}`);
+
+		res.render("C:/Users/MOHIT/Desktop/Parking reservation system/views/user/seemore.ejs", { parking: parkingMain.data });
+	} catch (error) {
+		res.status(500).json({ message: error });
+	}
+});
+
+
+
+// Booking Page
+
+app.get("/booking/:id", async (req, res) => {
+	try {
+
+		let currentDate = `${day}-${month}-${year}`;
+		console.log(currentDate)
+
+		const parkingMain = await axios.get(`${API_URL}/parking/${req.params.id}`);
+
+		// req.session.username = username;
+
+		console.log(parkingMain.data);
+		res.render("C:/Users/MOHIT/Desktop/Parking reservation system/views/user/booking.ejs",
+			{
+				parking: parkingMain.data,
+				currentDate,
+				username: req.session.username
+			});
+	} catch (error) {
+		res.status(500).json({ message: error });
+	}
 })
+
+
+
+// Parking booking section 
+
+
+app.post("/Reservation", async (req, res) => {
+	try {
+
+		const reservation = await Reservation.create({
+			Username: req.body.Username,
+			date: req.body.date,
+			Entry_time: req.body.Entry_time,
+			Exit_time: req.body.Exit_time,
+			spot: req.body.spot,
+			address: req.body.address
+		});
+		res.render("C:/Users/MOHIT/Desktop/Parking reservation system/views/user/ReservationComplete.ejs")
+
+
+	} catch (error) {
+		console.log(error.message);
+	}
+
+});
+
+
+
+
 
 
 
 
 //      ====-----==== Admin  Section ====-----====
 
+
+// Admin
+
+app.get('/Admin', async (req, res) => {
+	const userKey = (req.query.key)
+	if (ADMIN_KEY === userKey) {
+		res.render("C:/Users/MOHIT/Desktop/Parking reservation system/views/admin/Admin.ejs")
+	}
+	else {
+		res
+			.status(404)
+			.json({ error: "You are not authorized" })
+	}
+
+})
 
 
 // Reservations Data//
@@ -275,16 +320,8 @@ app.post("/createparking", async (req, res) => {
 
 	try {
 
-		const product = await Product.create({
-			name: req.body.name,
-			price: req.body.price,
-			brief: req.body.brief,
-			img: req.body.img,
-			img2: req.body.img2
-
-		});
-
-		res.redirect("C:/Users/MOHIT/Desktop/Parking reservation system/views/admin/parking");
+		const parking = await Parking.create(req.body)
+		res.redirect("/parking");
 
 	} catch (error) {
 		console.log(error.message);
@@ -296,76 +333,11 @@ app.post("/createparking", async (req, res) => {
 app.get("/api/parking/delete/:id", async (req, res) => {
 	try {
 		await axios.delete(`${API_URL}/parking/${req.params.id}/?key=123456789`);
-		res.redirect("C:/Users/MOHIT/Desktop/Parking reservation system/views/admin/parking");
+		res.redirect("/parking");
 	} catch (error) {
-		res.json({ message: "Error deleting post" });
+		res.json({ message: error });
 	}
 });
-
-
-// Seemore
-
-app.get("/seemore/:id", async (req, res) => {
-	try {
-		const parkingMain = await axios.get(`${API_URL}/parking/${req.params.id}`);
-
-		console.log(parkingMain.data);
-		res.render("C:/Users/MOHIT/Desktop/Parking reservation system/views/user/seemore.ejs", { parking: parkingMain.data });
-	} catch (error) {
-		res.status(500).json({ message: error });
-	}
-});
-
-// Reservation
-
-app.get("/booking/:id", async (req, res) => {
-	try {
-
-		let currentDate = `${day}-${month}-${year}`;
-		console.log(currentDate)
-
-		const parkingMain = await axios.get(`${API_URL}/parking/${req.params.id}`);
-
-		// req.session.username = username;
-
-		console.log(parkingMain.data);
-		res.render("C:/Users/MOHIT/Desktop/Parking reservation system/views/user/booking.ejs",
-			{
-				parking: parkingMain.data,
-				currentDate,
-				username: req.session.username
-			});
-	} catch (error) {
-		res.status(500).json({ message: error });
-	}
-})
-
-
-
-//      ====-----==== Table Booking Section ====-----====
-
-
-app.post("/Reservation", async (req, res) => {
-	try {
-
-		const reservation = await Reservation.create({
-			Username: req.body.Username,
-			date: req.body.date,
-			Entry_time: req.body.Entry_time,
-			Exit_time: req.body.Exit_time,
-			spot: req.body.spot,
-			address: req.body.address
-		});
-		res.render("C:/Users/MOHIT/Desktop/Parking reservation system/views/user/ReservationComplete.ejs")
-
-
-	} catch (error) {
-		console.log(error.message);
-	}
-
-});
-
-
 
 
 
