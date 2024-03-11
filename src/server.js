@@ -47,7 +47,7 @@ let year = date.getFullYear();
 
 //  Home page
 app.get("/", function (req, res) {
-	res.render("C:/Users/MOHIT/Desktop/Parking reservation system/views/user/home");
+	res.render("D:/Login_Backend_Main/views/user/home.ejs");
 });
 
 

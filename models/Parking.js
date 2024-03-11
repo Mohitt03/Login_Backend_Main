@@ -1,6 +1,5 @@
 const mongoose = require('mongoose')
 const Schema = mongoose.Schema
-const passportLocalMongoose = require('passport-local-mongoose');
 var Parking = new Schema({
     parking_number: {
         type: Number,
@@ -27,7 +26,5 @@ var Parking = new Schema({
         timestamps: true
     }
 )
-
-Parking.plugin(passportLocalMongoose);
 
 module.exports = mongoose.model('Parking', Parking)
