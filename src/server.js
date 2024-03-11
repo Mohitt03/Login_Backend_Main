@@ -47,26 +47,26 @@ let year = date.getFullYear();
 
 //  Home page
 app.get("/", function (req, res) {
-	res.render("D:/Login_Backend_Main/views/user/home.ejs");
+	res.render("home.ejs");
 });
 
 
 //  Secret page
 app.get("/secret", isLoggedIn, async function (req, res) {
-	res.render("C:/Users/MOHIT/Desktop/Parking reservation system/views/user/secret.ejs");
+	res.render("C:secret.ejs");
 });
 
 
 // About page
 app.get("/about", (req, res) => {
-	res.render("C:/Users/MOHIT/Desktop/Parking reservation system/views/user/About.ejs")
+	res.render("About.ejs")
 })
 
 
 // Contact page
 
 app.get("/contact", (req, res) => {
-	res.render("C:/Users/MOHIT/Desktop/Parking reservation system/views/user/Contact.ejs")
+	res.render("Contact.ejs")
 })
 
 
@@ -74,7 +74,7 @@ app.get("/contact", (req, res) => {
 // Showing register form
 
 app.get("/register", function (req, res) {
-	res.render("C:/Users/MOHIT/Desktop/Parking reservation system/views/user/register");
+	res.render("register");
 });
 
 // Handling user registration
@@ -86,13 +86,13 @@ app.post("/register", async (req, res) => {
 		password: req.body.password
 	});
 
-	return res.render("C:/Users/MOHIT/Desktop/Parking reservation system/views/user/login");
+	return res.render("login");
 });
 
 //Showing login form
 
 app.get("/login", function (req, res) {
-	res.render("C:/Users/MOHIT/Desktop/Parking reservation system/views/user/login");
+	res.render("login");
 });
 
 //Handling user login
@@ -106,7 +106,7 @@ app.post("/login", async function (req, res) {
 		if (user) {
 			const result = req.body.password === user.password;
 			if (result) {
-				res.render("C:/Users/MOHIT/Desktop/Parking reservation system/views/user/secret.ejs", { name: req.session.username });
+				res.render("secret.ejs", { name: req.session.username });
 			} else {
 				res.status(400).json({ error: "password doesn't match" });
 			}
@@ -124,7 +124,7 @@ app.post("/login", async function (req, res) {
 app.get("/logout", function (req, res) {
 	req.logout(function (err) {
 		if (err) { return next(err); }
-		res.render('C:/Users/MOHIT/Desktop/Parking reservation system/views/user/home.ejs');
+		res.render('home.ejs');
 	});
 });
 
@@ -132,7 +132,7 @@ app.get("/logout", function (req, res) {
 
 function isLoggedIn(req, res, next) {
 	if (req.isAuthenticated()) return next();
-	res.redirect("C:/Users/MOHIT/Desktop/Parking reservation system/views/user/login");
+	res.redirect("login");
 }
 
 
@@ -150,7 +150,7 @@ app.get('/Availibility', async (req, res) => {
 				]
 			}
 		);
-		res.render("C:/Users/MOHIT/Desktop/Parking reservation system/views/user/Avalibility.ejs", { parking });
+		res.render("Avalibility.ejs", { parking });
 	} catch (error) {
 		res.status(500).json({ message: error.message })
 	}
@@ -164,7 +164,7 @@ app.get("/seemore/:id", async (req, res) => {
 	try {
 		const parkingMain = await axios.get(`${API_URL}/parking/${req.params.id}`);
 
-		res.render("C:/Users/MOHIT/Desktop/Parking reservation system/views/user/seemore.ejs", { parking: parkingMain.data });
+		res.render("seemore.ejs", { parking: parkingMain.data });
 	} catch (error) {
 		res.status(500).json({ message: error });
 	}
@@ -185,7 +185,7 @@ app.get("/booking/:id", async (req, res) => {
 		// req.session.username = username;
 
 		console.log(parkingMain.data);
-		res.render("C:/Users/MOHIT/Desktop/Parking reservation system/views/user/booking.ejs",
+		res.render("booking.ejs",
 			{
 				parking: parkingMain.data,
 				currentDate,
@@ -212,7 +212,7 @@ app.post("/Reservation", async (req, res) => {
 			spot: req.body.spot,
 			address: req.body.address
 		});
-		res.render("C:/Users/MOHIT/Desktop/Parking reservation system/views/user/ReservationComplete.ejs")
+		res.render("ReservationComplete.ejs")
 
 
 	} catch (error) {
@@ -236,7 +236,7 @@ app.post("/Reservation", async (req, res) => {
 app.get('/Admin', async (req, res) => {
 	const userKey = (req.query.key)
 	if (ADMIN_KEY === userKey) {
-		res.render("C:/Users/MOHIT/Desktop/Parking reservation system/views/admin/Admin.ejs")
+		res.render("Admin.ejs")
 	}
 	else {
 		res
@@ -254,7 +254,7 @@ app.get("/Reservation", async (req, res) => {
 	try {
 		const response = await axios.get(`${API_URL}/ParkingReservation/?key=123456789`);
 		console.log(response);
-		res.render("C:/Users/MOHIT/Desktop/Parking reservation system/views/admin/Reservation.ejs", { datas: response.data });
+		res.render("Reservation.ejs", { datas: response.data });
 	} catch (error) {
 		res.status(500).json({ error: error });
 	}
@@ -263,7 +263,7 @@ app.get("/Reservation", async (req, res) => {
 app.get("/api/Data/delete/:id", async (req, res) => {
 	try {
 		await axios.delete(`${API_URL}/Data/${req.params.id}/?key=123456789`);
-		res.redirect("C:/Users/MOHIT/Desktop/Parking reservation system/views/admin/Reservation");
+		res.redirect("Reservation");
 	} catch (error) {
 		res.status(500).json({ message: "Error deleting post" });
 	}
@@ -278,7 +278,7 @@ app.get("/Users", async (req, res) => {
 	try {
 		const uresponse = await axios.get(`${API_URL}/Udata/?key=123456789`);
 		console.log(uresponse);
-		res.render("C:/Users/MOHIT/Desktop/Parking reservation system/views/admin/Users.ejs", { datas: uresponse.data });
+		res.render("Users.ejs", { datas: uresponse.data });
 	} catch (error) {
 		res.status(500).json({ error: error });
 	}
@@ -287,7 +287,7 @@ app.get("/Users", async (req, res) => {
 app.get("/api/Udata/delete/:id", async (req, res) => {
 	try {
 		await axios.delete(`${API_URL}/Udata/${req.params.id}/?key=123456789`);
-		res.redirect("C:/Users/MOHIT/Desktop/Parking reservation system/views/admin/users");
+		res.redirect("users");
 	} catch (error) {
 		res.status(500).json({ error: error });
 	}
@@ -304,14 +304,14 @@ app.get("/parking", async (req, res) => {
 	try {
 		const response = await axios.get(`${API_URL}/parking/?key=123456789`);
 		console.log(response);
-		res.render("C:/Users/MOHIT/Desktop/Parking reservation system/views/admin/parking.ejs", { datas: response.data });
+		res.render("parking.ejs", { datas: response.data });
 	} catch (error) {
 		res.status(500).json({ error: error });
 	}
 });
 
 app.get("/createparking", (req, res) => {
-	res.render("C:/Users/MOHIT/Desktop/Parking reservation system/views/admin/createparking.ejs", {
+	res.render("createparking.ejs", {
 		heading: "New Parking",
 		submit: "Create"
 	})
