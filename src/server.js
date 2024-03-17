@@ -36,7 +36,7 @@ passport.use(new LocalStrategy(User.authenticate()));
 passport.serializeUser(User.serializeUser());
 passport.deserializeUser(User.deserializeUser());
 // const API_URL = "https://bevri-restaraunt.onrender.com"
-const API_URL = "http://localhost:5000"
+const API_URL = "http://localhost:2000"	
 const ADMIN = "MOHIT0000";
 const ADMIN_KEY = "1511";
 // Date
