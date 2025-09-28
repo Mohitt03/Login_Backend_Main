@@ -150,7 +150,7 @@ app.get('/Availibility', async (req, res) => {
 				]
 			}
 		);
-		res.render("Avalibility.ejs", { parking });
+		res.render("Avalibility.ejs", { parkings : parking });
 	} catch (error) {
 		res.status(500).json({ message: error.message })
 	}
